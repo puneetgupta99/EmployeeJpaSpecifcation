@@ -1,0 +1,102 @@
+package com.emp.reporting.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.emp.reporting.dto.FilterDto;
+import com.emp.reporting.dto.RequestDto;
+import com.emp.reporting.models.Employee;
+import com.emp.reporting.repository.EmpRepository;
+import com.emp.reporting.service.EmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+
+	@Autowired
+	EmployeeService employeeService;
+	
+	@Autowired 
+	EmpRepository empRepository;
+	
+	
+	
+	@PostMapping("/add")
+	void addEmp(@RequestBody Employee e)
+	{
+		employeeService.addEmp(e);
+	}
+	
+	
+	@PostMapping("/filters")
+	List<Employee> getfilteredlis(@RequestBody RequestDto rdto)
+	{
+ 		List<FilterDto> filters =rdto.getFdto();
+		System.out.println(filters);
+ 		
+ 		Specification<Employee> spec=(root, query, criteriaBuilder) -> 
+		{
+
+			
+			
+			List<Predicate>  predicates= new ArrayList<>();
+			for( FilterDto f :filters)
+			{
+				
+				
+				 if(f.getEquality().equals("gt"))
+				{
+				Predicate p=criteriaBuilder.greaterThan(root.get(f.getFieldName()), root.get(f.getValue()));	
+					
+					predicates.add(p);
+					
+				}
+				else if(f.getEquality().equals("ls"))
+				{
+Predicate p=criteriaBuilder.lessThan(root.get(f.getFieldName()), root.get(f.getValue()));	
+					
+					predicates.add(p);
+						
+					
+					
+				}
+				else {
+				
+Predicate p=criteriaBuilder.equal(root.get(f.getFieldName()), root.get(f.getValue()));	
+					
+					predicates.add(p);
+								
+				
+				}
+			  
+					
+		}	
+		
+		
+			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+			
+	};	
+				
+				
+				
+			
+	
+		return  empRepository.findAll(spec);
+		
+	}
+	
+	
+}
