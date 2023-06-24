@@ -10,9 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
-@Configuration
-@Component
-@ConfigurationProperties(prefix = "filters")
 public class RequestDto {
 
 	

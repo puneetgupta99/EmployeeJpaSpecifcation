@@ -12,6 +12,7 @@ import com.emp.reporting.dto.FilterDto;
 import com.emp.reporting.dto.RequestDto;
 import com.emp.reporting.models.Employee;
 import com.emp.reporting.service.EmployeeService;
+import com.emp.reporting.util.EmployeeCSVGenerator;
 import com.emp.reporting.util.ReportGenerator;
 
 
@@ -25,16 +26,18 @@ public class EmployeeReportScheduler {
 	@Autowired
 	  ReportGenerator reportGenerator;
 
-	
-	@Autowired
-	RequestDto rdto;
+//	
+//	@Autowired
+//	List<FilterDto> fdtos;
    
 
-	 @Scheduled(cron = "0/10 * * * * *")// Run every Monday at midnight
+	 @Scheduled(cron = "0 */30 * * * *")// Run every Monday at midnight
     public void generateEmployeeReport() {
-        List<Employee> employees = employeeService.getaall();
-        System.out.println(rdto);
-  System.out.println(employees);
+		 List<Employee> employees = employeeService.getaall();
+		    
+		    EmployeeCSVGenerator csvGenerator = new EmployeeCSVGenerator();
+		    csvGenerator.generateEmployeeCSV(employees,1);
+		    
         
         
     }

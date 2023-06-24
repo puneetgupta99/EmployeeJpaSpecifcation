@@ -20,4 +20,9 @@ List<Employee> getaall();
    
    Employee modifyEmp(Employee e);
    
+   Employee getbyEmp(Long id);
+   
+   void delete(Long id);
+   
+   List<Employee> getFilteredList();
 }

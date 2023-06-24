@@ -29,7 +29,6 @@ public class ReportGenerator {
             Row row = sheet.createRow(rowNumber++);
             row.createCell(0).setCellValue(employee.getId());
             row.createCell(1).setCellValue(employee.getName());
-            row.createCell(2).setCellValue(employee.getDoj().toString());
             row.createCell(3).setCellValue(employee.getSalary());
         }
 
