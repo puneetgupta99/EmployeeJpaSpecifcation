@@ -26,17 +26,18 @@ public class EmployeeReportScheduler {
 	@Autowired
 	  ReportGenerator reportGenerator;
 
-//	
-//	@Autowired
-//	List<FilterDto> fdtos;
+	@Autowired
+	 EmployeeCSVGenerator csvGenerator; 
+	//List<FilterDto> fdtos;
    
 
-	 @Scheduled(cron = "0 */30 * * * *")// Run every Monday at midnight
+	 //"0/10 * * * * *"
+	 @Scheduled(initialDelay = 10000l,fixedDelay = 10000l)
     public void generateEmployeeReport() {
-		 List<Employee> employees = employeeService.getaall();
-		    
-		    EmployeeCSVGenerator csvGenerator = new EmployeeCSVGenerator();
-		    csvGenerator.generateEmployeeCSV(employees,1);
+		 List<Employee> employees = employeeService.getFilteredList();
+		 System.out.println(employees);
+		 
+		 csvGenerator.generateEmployeeCSV(employees,1);
 		    
         
         

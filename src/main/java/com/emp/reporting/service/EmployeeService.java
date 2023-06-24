@@ -2,6 +2,7 @@ package com.emp.reporting.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.emp.reporting.models.Employee;
@@ -25,4 +26,6 @@ List<Employee> getaall();
    void delete(Long id);
    
    List<Employee> getFilteredList();
+   
+   public Specification<Employee> getSpecificatio();
 }

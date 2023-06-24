@@ -12,8 +12,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 import com.emp.reporting.models.Employee;
 
+@Component
 public class EmployeeCSVGenerator {
     
     public void generateEmployeeCSV(List<Employee> employees, int count) {

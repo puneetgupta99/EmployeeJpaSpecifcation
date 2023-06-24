@@ -62,20 +62,20 @@ public class EmployeeController {
 
 	
 	@GetMapping("/filter")
-	List<Employee> getfilter(@RequestBody RequestDto rdto)
+	List<Employee> getfilter()
 	{
  		
-			List<FilterDto> filters =rdto.getFdto();
 			
- 		Specification<Employee> spec=(root, query, criteriaBuilder) -> 
-		{
-		
-			LocalDate date=LocalDate.of(2021, 5, 1);
-return criteriaBuilder.greaterThan(root.get("dateField"), date);
-			
-			  
-					
-		};
+// 		Specification<Employee> spec=(root, query, criteriaBuilder) -> 
+//		{
+//		
+//			LocalDate date=LocalDate.of(2021, 5, 1);
+//return criteriaBuilder.greaterThan(root.get("dateField"), date);
+//			
+//			  
+//					
+//		};
+		Specification<Employee> spec=employeeService.getSpecificatio();
 		
 		return  empRepository.findAll(spec);
 		
@@ -90,66 +90,66 @@ return criteriaBuilder.greaterThan(root.get("dateField"), date);
  		List<FilterDto> filters =rdto.getFdto();
 		System.out.println(filters);
  		
- 		Specification<Employee> spec=(root, query, criteriaBuilder) -> 
-		{	
-			List<Predicate>  predicates= new ArrayList<>();
-			for( FilterDto f :filters)
-			{
+// 		Specification<Employee> spec=(root, query, criteriaBuilder) -> 
+//		{	
+//			List<Predicate>  predicates= new ArrayList<>();
+//			for( FilterDto f :filters)
+//			{
+//				
+//				
+//				 if(f.getEquality().equals("gt"))
+//				{
+//					 Predicate p;
+//					 if(f.getField().equals("dateField"))
+//					 {
+//							p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+//					 }else {
+//						 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
+//	 
+//					 }
+//					predicates.add(p);
+//					
+//				}
+//				else if(f.getEquality().equals("ls"))
+//				{
+//					Predicate p; 
+//					if(f.getField().equals("dateField"))
+//					 {
+//							 p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+//					 }else {
+//							 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
+//	 
+//					 }	
+//					predicates.add(p);
+//						
+//					
+//					
+//				}
+//				else {
+//				
+//					Predicate p;
+//					 if(f.getField().equals("dateField"))
+//					 {
+//				p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+//					 }else {
+//						 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
+//	 
+//					 }
+//					predicates.add(p);
+//								
+//				
+//				}
+//			  
+//					
+//		}	
+//		
+//		
+//			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+//			
+//	};	
 				
 				
-				 if(f.getEquality().equals("gt"))
-				{
-					 Predicate p;
-					 if(f.getField().equals("dateField"))
-					 {
-							p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
-					 }else {
-						 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
-	 
-					 }
-					predicates.add(p);
-					
-				}
-				else if(f.getEquality().equals("ls"))
-				{
-					Predicate p; 
-					if(f.getField().equals("dateField"))
-					 {
-							 p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
-					 }else {
-							 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
-	 
-					 }	
-					predicates.add(p);
-						
-					
-					
-				}
-				else {
-				
-					Predicate p;
-					 if(f.getField().equals("dateField"))
-					 {
-				p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
-					 }else {
-						 p=criteriaBuilder.greaterThan(root.get(f.getField()),f.getValue());	
-	 
-					 }
-					predicates.add(p);
-								
-				
-				}
-			  
-					
-		}	
-		
-		
-			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-			
-	};	
-				
-				
-				
+				Specification<Employee> spec=employeeService.getSpecificatio();
 			
 	
 		return  empRepository.findAll(spec);
