@@ -30,9 +30,11 @@ public class EmployeeReportScheduler {
 	 EmployeeCSVGenerator csvGenerator; 
 	//List<FilterDto> fdtos;
    
+    @Value("${employee.report.scheduler.cron}")
+    private String schedulerCron;
 
-	 //"0/10 * * * * *"
-	 @Scheduled(initialDelay = 10000l,fixedDelay = 10000l)
+	
+	 @Scheduled(cron="${employee.report.scheduler.cron}")
     public void generateEmployeeReport() {
 		 List<Employee> employees = employeeService.getFilteredList();
 		 System.out.println(employees);

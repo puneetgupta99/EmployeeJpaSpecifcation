@@ -123,7 +123,7 @@ public class EmpServiceImpl implements EmployeeService{
 					Predicate p;
 					 if(f.getField().equals("dateField"))
 					 {
-				p=criteriaBuilder.greaterThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+				p=criteriaBuilder.equal(root.get(f.getField()),LocalDate.parse(f.getValue()));	
 					 }else {
 						 p=criteriaBuilder.equal(root.get(f.getField()),f.getValue());	
 	 
