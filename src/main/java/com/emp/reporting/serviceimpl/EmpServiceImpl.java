@@ -103,6 +103,19 @@ public class EmpServiceImpl implements EmployeeService{
 					predicates.add(p);
 					
 				}
+				 else  if(f.getEquality().equals("gteq"))
+				{
+					 Predicate p;
+					 if(f.getField().equals("dateField"))
+					 {
+							p=criteriaBuilder.greaterThanOrEqualTo(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+					 }else {
+						 p=criteriaBuilder.greaterThanOrEqualTo(root.get(f.getField()),f.getValue());	
+	 
+					 }
+					predicates.add(p);
+					
+				}
 				else if(f.getEquality().equals("ls"))
 				{
 					Predicate p; 
@@ -111,6 +124,21 @@ public class EmpServiceImpl implements EmployeeService{
 							 p=criteriaBuilder.lessThan(root.get(f.getField()),LocalDate.parse(f.getValue()));	
 					 }else {
 							 p=criteriaBuilder.lessThan(root.get(f.getField()),f.getValue());	
+	 
+					 }	
+					predicates.add(p);
+						
+					
+					
+				}
+				else if(f.getEquality().equals("lseq"))
+				{
+					Predicate p; 
+					if(f.getField().equals("dateField"))
+					 {
+							 p=criteriaBuilder.lessThanOrEqualTo(root.get(f.getField()),LocalDate.parse(f.getValue()));	
+					 }else {
+							 p=criteriaBuilder.lessThanOrEqualTo(root.get(f.getField()),f.getValue());	
 	 
 					 }	
 					predicates.add(p);

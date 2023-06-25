@@ -3,6 +3,7 @@ package com.emp.reporting.scheduler;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,12 +24,13 @@ public class EmployeeReportScheduler {
 	@Autowired
   EmployeeService employeeService;
     
-	@Autowired
-	  ReportGenerator reportGenerator;
 
+	
+	
 	@Autowired
-	 EmployeeCSVGenerator csvGenerator; 
-	//List<FilterDto> fdtos;
+	@Qualifier("pdf")
+	  ReportGenerator reportGenerator;
+	
    
     @Value("${employee.report.scheduler.cron}")
     private String schedulerCron;
@@ -39,7 +41,7 @@ public class EmployeeReportScheduler {
 		 List<Employee> employees = employeeService.getFilteredList();
 		 System.out.println(employees);
 		 
-		 csvGenerator.generateEmployeeCSV(employees,1);
+		 reportGenerator.generateReport(employees);
 		    
         
         

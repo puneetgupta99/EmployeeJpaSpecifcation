@@ -12,14 +12,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.emp.reporting.models.Employee;
 
 @Component
-public class EmployeeCSVGenerator {
+@Qualifier("csv")
+public class EmployeeCSVGenerator implements ReportGenerator{
     
-    public void generateEmployeeCSV(List<Employee> employees, int count) {
+    public void generateReport(List<Employee> employees) {
         
     	LocalDate currentDate = LocalDate.now();
   
