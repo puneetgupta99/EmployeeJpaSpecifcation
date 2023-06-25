@@ -15,25 +15,25 @@ import com.emp.reporting.util.ReportGenerator;
 @Configuration
 public class ReportGenConfig {
 
-	
-	@Value("${report.generator.type}")
-    private String reportType;
-
-	@Primary
-    @Bean
-    @ConditionalOnProperty(name ="report.generator.type" , havingValue = "csv")
-    public ReportGenerator csvGen() {
-    System.out.println("using CSv Genrator");
-    	return new EmployeeCSVGenerator();
-    }
-
-    @Primary
-    @Bean
-    @ConditionalOnProperty(name ="report.generator.type" , havingValue = "pdf")
-    public ReportGenerator pdfGen() {
-    	System.out.println("using PDf Genrator");
-        return new PdfGenerator();
-    }
+//	
+//	@Value("${report.generator.type}")
+//    private String reportType;
+//
+//	@Primary
+//    @Bean
+//    @ConditionalOnProperty(name ="report.generator.type" , havingValue = "csv")
+//    public ReportGenerator csvGen() {
+//    System.out.println("using CSv Genrator");
+//    	return new EmployeeCSVGenerator();
+//    }
+//
+//    @Primary
+//    @Bean
+//    @ConditionalOnProperty(name ="report.generator.type" , havingValue = "pdf")
+//    public ReportGenerator pdfGen() {
+//    	System.out.println("using PDf Genrator");
+//        return new PdfGenerator();
+//    }
 	
 	
 }

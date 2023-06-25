@@ -26,9 +26,10 @@ public class EmployeeReportScheduler {
   EmployeeService employeeService;
     
 
-
-    // @Resource(name ="${report.generator.type}")
-	@Autowired
+//Qualifier is Static
+     
+//	@Autowired
+	@Resource(name ="${report.generator.type}")
 	private ReportGenerator reportGenerator;
 	
    

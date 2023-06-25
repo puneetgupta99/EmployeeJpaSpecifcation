@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.emp.reporting.models.Employee;
 
-@Component
-@Qualifier("csv")
+@Component("csv")
 public class EmployeeCSVGenerator implements ReportGenerator{
     
     public void generateReport(List<Employee> employees) {

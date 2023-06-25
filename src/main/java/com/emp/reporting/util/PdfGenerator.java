@@ -17,8 +17,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 import com.emp.reporting.models.Employee;
 
-@Component
-@Qualifier("pdf")
+@Component("pdf")
 
 public class PdfGenerator implements ReportGenerator {
 
