@@ -24,7 +24,8 @@ public class PdfGenerator implements ReportGenerator {
 
 	@Override
 	public void generateReport(List<Employee> employees) {
-		 try {
+		
+		try {
 	            Document document = new Document();
 	            String uniqueId = UUID.randomUUID().toString(); 
 	            
@@ -32,14 +33,21 @@ public class PdfGenerator implements ReportGenerator {
 	            PdfWriter.getInstance(document, new FileOutputStream(pdfFilePath));
 	            document.open();
 
-	            for (Employee employee : employees) {
+	            if(employees.size()==0)
+	    		{
+	    		System.out.println("No Records");
+	    		return ;
+	    		}
+	            else {for (Employee employee : employees) {
 	                document.add(new Paragraph("Employee ID: " + employee.getId()));
 	                document.add(new Paragraph("Name: " + employee.getName()));
 	                document.add(new Paragraph("Date Field: " + employee.getDateField()));
 	                document.add(new Paragraph("Salary: " + employee.getSalary()));
 	                document.add(new Paragraph("\n"));
 	            }
-
+	            
+	            }
+	        	
 	            document.close();
 	        } catch (DocumentException e) {
 	            e.printStackTrace();

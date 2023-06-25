@@ -2,6 +2,8 @@ package com.emp.reporting.scheduler;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,18 +20,16 @@ import com.emp.reporting.util.ReportGenerator;
 
 
 @Component
-@EnableScheduling
 public class EmployeeReportScheduler {
     
 	@Autowired
   EmployeeService employeeService;
     
 
-	
-	
+
+    // @Resource(name ="${report.generator.type}")
 	@Autowired
-	@Qualifier("pdf")
-	  ReportGenerator reportGenerator;
+	private ReportGenerator reportGenerator;
 	
    
     @Value("${employee.report.scheduler.cron}")
