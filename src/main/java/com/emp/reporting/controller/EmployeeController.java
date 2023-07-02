@@ -58,8 +58,15 @@ public class EmployeeController {
 		return  employeeService.getbyEmp(id);
 		
 	}
-	
 
+
+	@GetMapping("/all")
+	Employee get()
+	{
+
+		return  employeeService.getbyEmp((long) 10L);
+
+	}
 	
 	@GetMapping("/filter")
 	List<Employee> getfilter()
