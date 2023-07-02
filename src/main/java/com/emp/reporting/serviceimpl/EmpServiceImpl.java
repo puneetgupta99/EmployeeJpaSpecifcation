@@ -20,7 +20,8 @@ import com.emp.reporting.repository.EmpRepository;
 import com.emp.reporting.service.EmployeeService;
 
 @Component
-public class EmpServiceImpl implements EmployeeService{
+public class
+EmpServiceImpl implements EmployeeService{
 
 	@Autowired
 	private EmpRepository empRepository;
